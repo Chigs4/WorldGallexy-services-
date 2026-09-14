@@ -1,0 +1,21 @@
+
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>WorldGallexy Services</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<nav><div class="logo">World<span>Gallexy</span> Services</div><div><a href="#jobs">Find Help</a><a href="#workers">Join</a><a href="/admin">Admin</a></div></nav>
+<header class="hero"><div><div class="tag">BULAWAYO PILOT • TEST VERSION</div><h1>When you need help, find it.</h1><p>Post a job, receive quotes from approved local professionals, compare your options and choose who you want to work with.</p><a class="btn" href="#jobs">Request a Service</a> <a class="btn secondary" href="#workers">Become a Professional</a></div>
+<div class="hero-card"><h3>How the test works</h3><p>1. A friend requests a service.</p><p>2. You approve a professional in Admin.</p><p>3. That professional submits a quote.</p><p>4. Your friend can see the marketplace flow.</p><p class="muted">This demo does not process payments or verify IDs.</p></div></header>
+<main>
+<section id="jobs"><h2>Request a service</h2><p class="muted">Use a real friend or your own test details. Don't enter sensitive information.</p>
+<form class="card formgrid" method="post" action="/job"><input name="customer" placeholder="Customer name" required><input name="phone" placeholder="Phone / WhatsApp" required>
+<select name="service" required><option value="">Choose service</option><option>Plumbing</option><option>Electrical</option><option>Mechanic</option><option>Cleaning</option><option>Carpentry</option><option>Painting</option><option>Building</option><option>Gardening</option><option>Other</option></select>
+<input name="area" placeholder="Area / suburb" required><textarea class="full" name="description" placeholder="What do you need done?" required></textarea><button class="btn full">Post Job</button></form>
+{% if jobs %}<h3>Open test jobs</h3><div class="grid">{% for j in jobs %}<div class="card job"><span class="tag">{{j.service}}</span><strong>#{{j.id}} — {{j.customer}}</strong><span>{{j.area}}</span><span>{{j.description}}</span><form method="post" action="/quote" class="formgrid"><input type="hidden" name="job_id" value="{{j.id}}"><select name="worker_id" required>{% for w in workers %}<option value="{{w.id}}">{{w.name}} — {{w.service}}</option>{% endfor %}</select><input name="amount" type="number" step="0.01" placeholder="Quote USD" required><textarea class="full" name="message" placeholder="Short message" required></textarea><button class="btn full">Submit Quote</button></form><button class="btn secondary" onclick="loadQuotes({{j.id}},this)">View Quotes</button><div id="q{{j.id}}"></div></div>{% endfor %}</div>{% endif %}
+</section>
+<section id="workers"><h2>Join as a professional</h2><p class="muted">For this test, use dummy details only. Production onboarding needs secure identity verification.</p>
+<form class="card formgrid" method="post" action="/worker/apply"><input name="name" placeholder="Professional name" required><input name="phone" placeholder="Phone / WhatsApp" required><input name="email" type="email" placeholder="Email" required><select name="service" required><option value="">Service</option><option>Plumbing</option><option>Electrical</option><option>Mechanic</option><option>Cleaning</option><option>Carpentry</option><option>Painting</option><option>Building</option><option>Gardening</option></select><input name="area" placeholder="Service area" required><button class="btn full">Apply to Join</button></form>
+{% if workers %}<h3>Approved test professionals</h3><div class="grid">{% for w in workers %}<div class="card worker"><span class="tag">{{w.service}}</span><strong>{{w.name}}</strong><span>{{w.area}}</span><span class="muted">Contact: {{w.phone}}</span></div>{% endfor %}</div>{% endif %}
+</section>
+</main><footer>WorldGallexy Services — early test MVP. No payments, ID verification, or production security in this version.</footer>
+<script>
+async function loadQuotes(id,btn){const r=await fetch('/api/jobs/'+id);const q=await r.json();document.getElementById('q'+id).innerHTML=q.length?q.map(x=>`<div class="quote"><b>${x.name}</b> — $${Number(x.amount).toFixed(2)}<br>${x.message}</div>`).join(''):'<p class="muted">No quotes yet.</p>';btn.disabled=true}
+</script></body></html>

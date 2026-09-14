@@ -1,0 +1,19 @@
+
+:root{--ink:#102033;--muted:#617083;--line:#dfe6ee;--bg:#f6f8fb;--card:#fff;--accent:#1565d8;--accent2:#0b4aa2}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:16px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+.logo{font-size:21px;font-weight:800}.logo span{color:var(--accent)}
+nav a{color:var(--ink);text-decoration:none;margin-left:18px;font-weight:600}
+.hero{padding:70px 6%;background:linear-gradient(135deg,#edf5ff,#fff);display:grid;grid-template-columns:1.25fr .75fr;gap:35px}
+h1{font-size:clamp(40px,6vw,72px);line-height:1.02;margin:0 0 18px}.hero p{font-size:20px;color:var(--muted);max-width:700px}
+.btn{display:inline-block;background:var(--accent);color:white;padding:13px 18px;border-radius:10px;text-decoration:none;border:0;font-weight:800;cursor:pointer}
+.btn.secondary{background:#eaf1fb;color:var(--accent2)}
+.hero-card,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 30px #10203310}
+.hero-card h3{margin-top:0}.stat{font-size:30px;font-weight:800}.muted{color:var(--muted)}
+main{max-width:1200px;margin:auto;padding:40px 6%}section{margin:0 0 55px}h2{font-size:32px;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);border-radius:10px;font:inherit}textarea{min-height:110px}
+.full{grid-column:1/-1}.worker,.job{display:flex;flex-direction:column;gap:10px}.tag{display:inline-block;padding:6px 9px;background:#edf4ff;border-radius:999px;font-size:12px;font-weight:800;color:var(--accent2)}
+.quote{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+footer{padding:35px 6%;background:#102033;color:#dce6f2}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}nav div:last-child{display:none}}

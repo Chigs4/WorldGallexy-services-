@@ -1,0 +1,7 @@
+
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/style.css"><title>Admin Dashboard</title></head>
+<body><main><h1>Admin Dashboard</h1><p class="muted">Test environment only.</p>
+<section><h2>Pending professionals</h2>{% for w in pending %}<div class="card"><b>{{w.name}}</b> — {{w.service}} — {{w.area}} — {{w.phone}} — {{w.email}}<form style="margin-top:10px" method="post" action="/admin/worker/{{w.id}}/approved"><input type="hidden" name="pin" value="1234"><button class="btn">Approve</button></form><form style="margin-top:8px" method="post" action="/admin/worker/{{w.id}}/rejected"><input type="hidden" name="pin" value="1234"><button class="btn secondary">Reject</button></form></div><br>{% else %}<p>No pending applications.</p>{% endfor %}</section>
+<section><h2>Jobs</h2>{% for j in jobs %}<div class="card"><b>#{{j.id}} {{j.service}}</b> — {{j.customer}} — {{j.area}}<p>{{j.description}}</p>{% if j.status=='open' %}<form method="post" action="/admin/job/{{j.id}}/close"><input type="hidden" name="pin" value="1234"><button class="btn secondary">Close Job</button></form>{% endif %}</div><br>{% endfor %}</section>
+<section><h2>Quotes</h2>{% for q in quotes %}<div class="card"><b>Job #{{q.job_id}}</b> — {{q.worker_name}} — ${{"%.2f"|format(q.amount)}}<p>{{q.message}}</p></div><br>{% else %}<p>No quotes yet.</p>{% endfor %}</section>
+</main></body></html>
