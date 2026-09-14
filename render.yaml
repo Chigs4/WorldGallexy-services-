@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: worldgallexy-services-test
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: WG_ADMIN_PIN
+        generateValue: true

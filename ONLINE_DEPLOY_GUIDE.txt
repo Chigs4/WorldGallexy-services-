@@ -1,0 +1,38 @@
+WORLDGALLEXY SERVICES — ONLINE FRIEND TEST
+
+This package is prepared for an online test deployment.
+
+PHONE-ONLY OVERVIEW:
+1. Create/sign into GitHub.
+2. Create a repository named worldgallexy-services.
+3. Upload all files/folders from this package, preserving:
+   app.py
+   requirements.txt
+   render.yaml
+   templates/
+   static/
+4. Sign into Render.
+5. Choose New > Web Service and connect the GitHub repository.
+6. Build command: pip install -r requirements.txt
+7. Start command: gunicorn app:app
+8. Choose the Free plan for testing and deploy.
+9. Open the HTTPS onrender.com address Render gives you.
+10. Send that address to your friends.
+
+ADMIN:
+Open the site URL followed by /admin.
+The render.yaml generates an admin PIN as an environment variable.
+Check the service's environment variables in Render to see the generated PIN.
+
+IMPORTANT:
+- This is an early test MVP, not a production marketplace.
+- Use dummy information only. Do not enter national ID numbers, passwords,
+  bank details, or other sensitive information.
+- Free hosting local files/SQLite are not reliable long-term storage.
+- No real payments or identity verification are included.
+- A real launch needs proper authentication, CSRF protection, rate limiting,
+  secure identity verification, privacy/consent controls, persistent database
+  storage, monitoring, backups, and legal/business review.
+- Because the founder is under 18, involve a parent/guardian and qualified
+  professionals before signing contracts, accepting investment, or launching
+  services involving sensitive identity/payment information.
